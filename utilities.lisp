@@ -11,6 +11,9 @@
               (t 'il:load-f))
         args))))
 
+;;; XXX I don't like the potential confusion between WITH-BOUND-IMAGE
+;;; and WITH-IMAGES, but WITH-NEW-IMAGES and WITH-LOADED-IMAGES all
+;;; give the wrong impression, alas.
 (defmacro with-images ((&rest images) &body body)
   "Generates an IL image for each of IMAGES, binding and loading if a parameter is supplied.  BODY is executed, and the images are freed thereafter."
   (let ((ids (gensym))
@@ -26,4 +29,24 @@
               ,@body)
          (il:delete-images ,count ,ids)))))
 
-(il:with-images (urp arp (exit "/home/julian/exit.pcx")) (format t "~&~A ~A ~A" urp arp exit))
+(defmacro with-init (&body body)
+  `(progn (init)
+          (unwind-protect (progn ,@body)
+            (shutdown))))
+
+(defun width-of (id)
+  (bind-image id)
+  (get-integer :image-width))
+
+(defun height-of (id)
+  (bind-image id)
+  (get-integer :image-height))
+
+
+(defmacro with-bound-image ((id) &body body)
+  "Binds ID for the duration of BODY, returning to the previously bound image thereafter."
+  (let ((old-image (gensym)))
+    `(let ((,old-image (il:get-integer :cur-image)))
+       (il:bind-image ,id)
+       (unwind-protect (progn ,@body)
+         (il:bind-image ,old-image)))))

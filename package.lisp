@@ -4,7 +4,11 @@
   (:use #:cl #:cffi :anaphora)
   (:shadow #:load #:error)
   (:export
+   #:with-bound-image
    #:with-images
+   #:with-init
+   #:width-of
+   #:height-of
    ;; bindings
    #:BIND-IMAGE
    #:BLIT
