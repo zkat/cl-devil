@@ -24,7 +24,7 @@
             (let (,@(loop for x in images
                        for (var . args) = (if (listp x) x (list x))
                        for i from 0
-                       collect `(,var (anaphora:aprog1 (cffi:mem-ref ,ids :uint ,i)
+                       collect `(,var (anaphora:aprog1 (cffi:mem-aref ,ids :uint ,i)
                                         ,@(w-i-args-helper args)))))
               ,@body)
          (il:delete-images ,count ,ids)))))
@@ -43,7 +43,12 @@
   (get-integer :image-height))
 
 
-(defmacro with-bound-image ((id) &body body)
+(defun gen-images (n)
+  (with-foreign-object (ids :uint n)
+    (%gen-images n ids)
+    (loop for i to n collect (mem-aref ids :uint i))))
+
+(defmacro with-bound-image (id &body body)
   "Binds ID for the duration of BODY, returning to the previously bound image thereafter."
   (let ((old-image (gensym)))
     `(let ((,old-image (il:get-integer :cur-image)))

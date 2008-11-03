@@ -128,7 +128,7 @@
 
 (defcfun ("ilInit" init) :void)
 (defcfun ("ilShutDown" shutdown) :void)
-(defcfun ("ilGenImages" gen-images) :void (num :int) (images :pointer))
+(defcfun ("ilGenImages" %gen-images) :void (num :int) (images :pointer))
 (defcfun ("ilBindImage" bind-image) :void (image :int))
 (defcfun ("ilDeleteImages" delete-images) :void (num :int) (images :pointer))
 (defcfun ("ilLoadImage" load-image) :boolean (file-name :string))
