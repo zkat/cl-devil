@@ -19,7 +19,7 @@
   (let ((ids (gensym))
         (count (length images)))
     `(cffi:with-foreign-object (,ids :uint ,count)
-       (il:gen-images ,count ,ids)
+       (%gen-images ,count ,ids)
        (unwind-protect
             (let (,@(loop for x in images
                        for (var . args) = (if (listp x) x (list x))
