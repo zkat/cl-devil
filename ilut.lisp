@@ -35,6 +35,7 @@
 (defcfun ("ilutEnable" enable) :boolean (state state-definition))
 (defcfun ("ilutDisable" disable) :boolean (state state-definition))
 (defcfun ("ilutGetBoolean" get-boolean) :boolean (state state-definition))
+(defcfun ("ilutInit" init) :boolean)
 ;;; OpenGL
 (defcfun ("ilutGLBindTexImage" gl-bind-tex-image) :uint)
 (defcfun ("ilutGLBindMipmaps" gl-bind-mipmaps) :uint)
