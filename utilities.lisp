@@ -16,7 +16,7 @@
 ;;; give the wrong impression, alas.
 (defmacro with-images ((&rest images) &body body)
   "Generates an IL image for each of IMAGES, binding and loading if a parameter is supplied.  BODY is executed, and the images are freed thereafter."
-  (let ((ids (gensym))
+  (let ((ids (gensym "IDS"))
         (count (length images)))
     `(cffi:with-foreign-object (,ids :uint ,count)
        (%gen-images ,count ,ids)
