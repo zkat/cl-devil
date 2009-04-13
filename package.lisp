@@ -12,14 +12,21 @@
    ;; bindings
    #:BIND-IMAGE
    #:BLIT
+   #:CONVERT-IMAGE
    #:COPY-IMAGE
    #:COPY-PIXELS
    #:DELETE-IMAGES
+   #:DISABLE
+   #:ENABLE
+   #:FLIP-IMAGE
    #:GEN-IMAGES
    #:GET-DATA
    #:GET-ERROR
    #:GET-INTEGER
+   #:GET-PALETTE
    #:INIT
+   #:IS-ENABLED
+   #:KEY-COLOR
    #:LOAD
    #:LOAD-F
    #:LOAD-IMAGE
@@ -30,6 +37,7 @@
    #:SAVE-IMAGE
    #:SAVE-L
    #:SET-DATA
+   #:SET-INTEGER
    #:SET-PIXELS
    #:SHUTDOWN
    #:TEX-IMAGE

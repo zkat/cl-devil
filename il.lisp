@@ -123,7 +123,9 @@
   (:image-offy #x0DFC)
   (:image-cubeflags #x0DFD)
   (:image-origin #x0DFE)
-  (:image-channels #x0DFF))
+  (:image-channels #x0DFF)
+  (:use-key-color #x0635)
+  (:png-alpha-index #x0724))
 
 (define-foreign-type pathname-string-type ()
   ()
@@ -160,4 +162,14 @@
 (defcfun ("ilBlit" blit) :boolean (source :uint) (dest-x :int) (dest-y :int) (dest-z :int) (src-x :int) (src-y :int) (src-z :int) (width :uint) (height :uint) (depth :uint))
 (defcfun ("ilGetError" get-error) error)
 
+(defcfun ("ilKeyColour" key-color) :void (red :float) (green :float) (blue :float) (alpha :float))
+(defcfun ("ilGetPalette" get-palette) :pointer)
+
 (defcfun ("ilGetInteger" get-integer) :uint (mode mode))
+(defcfun ("ilSetInteger" set-integer) :void (mode mode) (param :int))
+(defcfun ("ilEnable" enable) :boolean (mode mode))
+(defcfun ("ilDisable" disable) :boolean (mode mode))
+(defcfun ("ilIsEnabled" enabled-p) :boolean (mode mode))
+
+(defcfun ("ilConvertImage" convert-image) :boolean (format data-format) (type data-type))
+(defcfun ("ilFlipImage" flip-image) :boolean)
