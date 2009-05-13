@@ -93,9 +93,14 @@
   (:lib-mng-error #x05E5)
   (:unknown-error #x05FF))
                         
-(defcenum mode                          ; there are some awfully
-  (:version-num #x0DE2)                 ; non-descript names in
-  (:image-width #x0DE4)                 ; DevIL...
+(defcenum mode
+  (:file-overwrite #x0620)
+  (:file-mode #x0621)
+  (:conv-pal #x0630)
+  (:use-key-color #x0635)
+  (:png-alpha-index #x0724)
+  (:version-num #x0DE2)
+  (:image-width #x0DE4)
   (:image-height #x0DE5)
   (:image-depth #x0DE6)
   (:image-size-of-data #x0DE7)
@@ -123,9 +128,7 @@
   (:image-offy #x0DFC)
   (:image-cubeflags #x0DFD)
   (:image-origin #x0DFE)
-  (:image-channels #x0DFF)
-  (:use-key-color #x0635)
-  (:png-alpha-index #x0724))
+  (:image-channels #x0DFF))
 
 (define-foreign-type pathname-string-type ()
   ()
@@ -173,3 +176,5 @@
 
 (defcfun ("ilConvertImage" convert-image) :boolean (format data-format) (type data-type))
 (defcfun ("ilFlipImage" flip-image) :boolean)
+
+(defcfun ("ilDetermineType" determine-type) image-type (pathname pathname-string))

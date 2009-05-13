@@ -10,6 +10,6 @@
     ((:file "package")
      (:file "il" :depends-on ("package"))
      #+(or)(:file "ilu" :depends-on ("package" "il"))
-     ;;(:file "ilut" :depends-on ("package" "il"))
+     (:file "ilut" :depends-on ("package" "il"))
      (:file "utilities" :depends-on ("package" "il"))))
 
