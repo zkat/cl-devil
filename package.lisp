@@ -51,6 +51,46 @@
    #:TEX-IMAGE
    ))
 
+(defpackage #:ilu
+  (:use #:cl #:cffi)
+  (:export
+   :init
+   :alienify
+   :blur-avg
+   :blur-gaussian
+   :build-mipmaps
+   :colours-used
+   :colors-used
+   :compare-image
+   :contrast
+   :crop
+   :delete-image
+   :edge-detect-p
+   :edge-detect-s
+   :emboss
+   :enlarge-canvas
+   :error-string
+   :flip-image
+   :gamma-correct-inter
+   :gamma-correct-scale
+   :gen-image
+   :get-integer
+   :invert-alpha
+   :mirror
+   :negative
+   :noisify
+   :pixelsize
+   :rotate
+   :saturate
+   :scale
+   :sharpen
+   :swap-colours
+   :swap-colors
+   ;; :get-image-info
+   ;; :get-string
+   ;; :image-parameter
+   ))
+
 (defpackage #:ilut
   (:use #:cl #:cffi)
   (:export
@@ -73,3 +113,4 @@
    #:SDL-SURFACE-FROM-BITMAP
    #:SDL-SURFACE-LOAD-IMAGE
    ))
+
