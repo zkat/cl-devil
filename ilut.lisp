@@ -4,6 +4,7 @@
 
 (define-foreign-library ilut
   (:unix (:or "libILUT" "libILUT.so.1"))
+  (:windows "ILUT.dll")
   (t (:default "libILUT")))
 (use-foreign-library ilut)
 
@@ -48,6 +49,9 @@
 (defcfun ("ilutGLTexImage" gl-tex-image) :boolean (level :uint))
 (defcfun ("ilutGLSubTex" gl-sub-tex) :boolean (tex-id :uint) (x-offset :uint) (y-offset :uint))
 ;;; SDL
+#-win32
 (defcfun ("ilutConvertToSDLSurface" convert-to-sdl-surface) :pointer (flags :uint))
+#-win32
 (defcfun ("ilutSDLSurfaceLoadImage" sdl-surface-load-image) :pointer (file-name :string))
+#-win32
 (defcfun ("ilutSDLSurfaceFromBitmap" sdl-surface-from-bitmap) :boolean (surface :pointer))
