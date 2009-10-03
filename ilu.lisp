@@ -4,6 +4,7 @@
 
 (define-foreign-library ilu
   (:unix (:or "libILU" "libILUT.so.1"))
+  (:windows "ILU.dll")
   (t (:default "libILU")))
 (use-foreign-library ilu)
 
@@ -65,7 +66,9 @@
   (width :uint) (height :uint) (depth :uint))
 (defcfun ("iluErrorString" error-string) :string)
 (defcfun ("iluFlipImage" flip-image) :boolean)
+#-win32
 (defcfun ("iluGammaCorrectInter" gamma-correct-inter) :boolean (gamma :float))
+#-win32
 (defcfun ("iluGammaCorrectScale" gamma-correct-scale) :boolean (gamma :float))
 (defcfun ("iluGenImage" gen-image) :uint)
 ;; (defcfun ("iluGetImageInfo" get-image-info) :void (info :pointer))

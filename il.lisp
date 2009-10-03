@@ -4,6 +4,7 @@
 
 (define-foreign-library il
   (:unix (:or "libIL" "libIL.so.1"))
+  (:windows "DevIL.dll")
   (t (:default "libIL")))
 (use-foreign-library il)
 
@@ -201,7 +202,7 @@
   (%is-enabled mode))
 
 (defcfun ("ilConvertImage" convert-image) :boolean (format data-format) (type data-type))
+#-win32
 (defcfun ("ilFlipImage" flip-image) :boolean)
 
 (defcfun ("ilDetermineType" determine-type) image-type (pathname pathname-string))
-
