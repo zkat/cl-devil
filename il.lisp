@@ -65,6 +65,15 @@
   (:float #x1406)
   (:double #x140A))
 
+(defcenum palette-type
+  (:none #x0400)
+  (:rgb24 #x0401)
+  (:rgb32 #x0402)
+  (:rgba32 #x0403)
+  (:bgr24 #x0404)
+  (:bgr32 #x0405)
+  (:bgra32 #x0406))
+
 (defcenum error
   (:no-error #x0000)
   (:invalid-enum #x0501)
@@ -167,6 +176,7 @@
 
 (defcfun ("ilKeyColour" key-color) :void (red :float) (green :float) (blue :float) (alpha :float))
 (defcfun ("ilGetPalette" get-palette) :pointer)
+(defcfun ("ilRegisterPal" register-palette) :void (palette :pointer) (size :uint) (type palette-type))
 
 (defcfun ("ilGetInteger" get-integer) :uint (mode mode))
 (defcfun ("ilSetInteger" set-integer) :void (mode mode) (param :int))
@@ -178,3 +188,4 @@
 (defcfun ("ilFlipImage" flip-image) :boolean)
 
 (defcfun ("ilDetermineType" determine-type) image-type (pathname pathname-string))
+

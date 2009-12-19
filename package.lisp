@@ -9,6 +9,10 @@
    #:with-init
    #:width-of
    #:height-of
+   #:pixel-format-of
+   #:element-type-of
+   #:bytes-per-pixel-of
+   #:copy-palette
    ;; bindings
    #:BIND-IMAGE
    #:BLIT
@@ -26,6 +30,7 @@
    #:GET-ERROR
    #:GET-INTEGER
    #:GET-PALETTE
+   #:REGISTER-PALETTE
    #:INIT
    #:IS-ENABLED
    #:KEY-COLOR

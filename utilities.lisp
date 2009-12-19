@@ -42,6 +42,26 @@
   (bind-image id)
   (get-integer :image-height))
 
+(defun pixel-format-of (id)
+  (bind-image id)
+  (foreign-enum-keyword 'data-format (get-integer :image-format)))
+
+(defun element-type-of (id)
+  (bind-image id)
+  (foreign-enum-keyword 'data-type (get-integer :image-type)))
+
+(defun bytes-per-pixel-of (id)
+  (bind-image id)
+  (get-integer :image-bytes-per-pixel))
+
+(defun copy-palette (dest src)
+  (bind-image src)
+  (let ((type (get-integer :palette-type))
+	(ncols (get-integer :palette-num-cols))
+	(bpp (get-integer :palette-bpp))
+	(pointer (get-palette)))
+    (bind-image dest)
+    (register-palette pointer (* ncols bpp) type)))
 
 (defun gen-images (n)
   (with-foreign-object (ids :uint n)
