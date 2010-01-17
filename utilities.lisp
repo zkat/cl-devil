@@ -1,4 +1,3 @@
-
 (in-package :cl-devil)
 
 (defun w-i-args-helper (args)
@@ -27,7 +26,7 @@
                        collect `(,var (anaphora:aprog1 (cffi:mem-aref ,ids :uint ,i)
                                         ,@(w-i-args-helper args)))))
               ,@body)
-         (il:delete-images ,count ,ids)))))
+         (%delete-images ,count ,ids)))))
 
 (defmacro with-init (&body body)
   `(progn (init)
