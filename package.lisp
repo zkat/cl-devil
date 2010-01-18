@@ -1,38 +1,10 @@
 (defpackage #:%cl-devil-internal
   (:nicknames #:%il)
-  (:use #:cl #:cffi #:alexandria)
+  (:use #:cl #:alexandria)
   (:shadow #:error)
   (:export
    #:maybe-error
-   #:deferrwrap
-   #:error
-   #:devil-error
-   #:no-error
-   #:invalid-enum
-   #:out-of-memory
-   #:format-not-supported
-   #:internal-error
-   #:invalid-value
-   #:illegal-operation
-   #:illegal-file-value
-   #:invalid-file-header
-   #:invalid-param
-   #:could-not-open-file
-   #:invalid-extension
-   #:file-already-exists
-   #:out-format-same
-   #:stack-overflow
-   #:stack-underflow
-   #:invalid-conversion
-   #:bad-dimensions
-   #:file-read-error
-   #:file-write-error
-   #:lib-gif-error
-   #:lib-jpeg-error
-   #:lib-png-error
-   #:lib-tiff-error
-   #:lib-mng-error
-   #:unknown-error))
+   #:deferrwrap))
 
 (defpackage #:cl-devil
   (:nicknames #:il)
@@ -85,7 +57,6 @@
    #:TEX-IMAGE
    ;; Errors from internal
    #:error
-   #:devil-error
    #:no-error
    #:invalid-enum
    #:out-of-memory
