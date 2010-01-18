@@ -1,0 +1,47 @@
+(in-package :%il)
+
+(define-condition devil-error (cl:error)
+  ((enum-value :initarg :enum-value :reader enum-value)))
+(macrolet ((deferrs (&rest keys)
+             `(progn
+                (defcenum error ,@keys)
+                ,@(loop for (key value) in keys collecting
+                       (let ((symbol (intern (symbol-name key))))
+                         `(define-condition ,symbol (devil-error) ()
+                            (:default-initargs :enum-value ,key)))))))
+  (deferrs
+    (:no-error #x0000)
+    (:invalid-enum #x0501)
+    (:out-of-memory #x0502)
+    (:format-not-supported #x0503)
+    (:internal-error #x0504)
+    (:invalid-value #x0505)
+    (:illegal-operation #x0506)
+    (:illegal-file-value #x0507)
+    (:invalid-file-header #x0508)
+    (:invalid-param #x0509)
+    (:could-not-open-file #x050A)
+    (:invalid-extension #x050B)
+    (:file-already-exists #x050C)
+    (:out-format-same #x050D)
+    (:stack-overflow #x050E)
+    (:stack-underflow #x050F)
+    (:invalid-conversion #x0510)
+    (:bad-dimensions #x0511)
+    (:file-read-error #x0512)
+    (:file-write-error #x0512)
+    (:lib-gif-error #x05E1)
+    (:lib-jpeg-error #x05E2)
+    (:lib-png-error #x05E3)
+    (:lib-tiff-error #x05E4)
+    (:lib-mng-error #x05E5)
+    (:unknown-error #x05FF)))
+
+(defmacro maybe-error (call)
+  `(if ,call
+       (values)
+       (cl:error (make-condition (find-symbol (symbol-name (il::get-error)) (find-package :il))))))
+
+(defmacro deferrwrap (name &optional args)
+  `(defun ,name ,args
+     (maybe-error (,(symbolicate "%" (symbol-name name)) ,@args))))
