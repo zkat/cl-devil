@@ -36,7 +36,7 @@
 
 (defpackage #:cl-devil
   (:nicknames #:il)
-  (:use #:cl #:cffi #:anaphora #:%il)
+  (:use #:cl #:cffi #:%il)
   (:shadow #:load #:error)
   (:export
    #:with-bound-image
