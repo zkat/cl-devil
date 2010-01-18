@@ -5,8 +5,9 @@
   :depends-on (:cffi :anaphora :alexandria)
   :components
   ((:file "package")
-   (:file "il" :depends-on ("package"))
-   (:file "ilu" :depends-on ("package" "il"))
-   (:file "ilut" :depends-on ("package" "il"))
+   (:file "internal")
+   (:file "il" :depends-on ("package" "internal"))
+   (:file "ilu" :depends-on ("package" "internal" "il"))
+   (:file "ilut" :depends-on ("package" "internal" "il"))
    (:file "utilities" :depends-on ("package" "il"))))
 

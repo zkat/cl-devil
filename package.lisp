@@ -1,7 +1,41 @@
+(defpackage #:%cl-devil-internal
+  (:nicknames #:%il)
+  (:use #:cl #:cffi #:alexandria)
+  (:shadow #:error)
+  (:export
+   #:deferrwrap
+   #:error
+   #:devil-error
+   #:no-error
+   #:invalid-enum
+   #:out-of-memory
+   #:format-not-supported
+   #:internal-error
+   #:invalid-value
+   #:illegal-operation
+   #:illegal-file-value
+   #:invalid-file-header
+   #:invalid-param
+   #:could-not-open-file
+   #:invalid-extension
+   #:file-already-exists
+   #:out-format-same
+   #:stack-overflow
+   #:stack-underflow
+   #:invalid-conversion
+   #:bad-dimensions
+   #:file-read-error
+   #:file-write-error
+   #:lib-gif-error
+   #:lib-jpeg-error
+   #:lib-png-error
+   #:lib-tiff-error
+   #:lib-mng-error
+   #:unknown-error))
 
 (defpackage #:cl-devil
   (:nicknames #:il)
-  (:use #:cl #:cffi #:anaphora #:alexandria)
+  (:use #:cl #:cffi #:anaphora #:%il)
   (:shadow #:load #:error)
   (:export
    #:with-bound-image
@@ -28,7 +62,6 @@
    #:GEN-IMAGES
    #:GEN-IMAGE
    #:GET-DATA
-   #:GET-ERROR
    #:GET-INTEGER
    #:GET-PALETTE
    #:REGISTER-PALETTE
@@ -49,10 +82,40 @@
    #:SET-PIXELS
    #:SHUTDOWN
    #:TEX-IMAGE
+   ;; Errors from internal
+   #:error
+   #:devil-error
+   #:no-error
+   #:invalid-enum
+   #:out-of-memory
+   #:format-not-supported
+   #:internal-error
+   #:invalid-value
+   #:illegal-operation
+   #:illegal-file-value
+   #:invalid-file-header
+   #:invalid-param
+   #:could-not-open-file
+   #:invalid-extension
+   #:file-already-exists
+   #:out-format-same
+   #:stack-overflow
+   #:stack-underflow
+   #:invalid-conversion
+   #:bad-dimensions
+   #:file-read-error
+   #:file-write-error
+   #:lib-gif-error
+   #:lib-jpeg-error
+   #:lib-png-error
+   #:lib-tiff-error
+   #:lib-mng-error
+   #:unknown-error
    ))
 
 (defpackage #:ilu
-  (:use #:cl #:cffi)
+  (:use #:cl #:cffi #:%il)
+  (:shadow #:error)
   (:export
    :init
    :alienify
@@ -92,7 +155,8 @@
    ))
 
 (defpackage #:ilut
-  (:use #:cl #:cffi)
+  (:use #:cl #:cffi #:%il)
+  (:shadow #:error)
   (:export
    #:CONVERT-TO-SDL-SURFACE
    #:DISABLE
