@@ -64,7 +64,8 @@
 (defcfun ("iluEmboss" emboss) :boolean)
 (defcfun ("iluEnlargeCanvas" enlarge-canvas) :boolean
   (width :uint) (height :uint) (depth :uint))
-(defcfun ("iluErrorString" error-string) :string)
+(defcfun ("iluErrorString" error-string) :string
+  (error il::error))
 (defcfun ("iluFlipImage" flip-image) :boolean)
 #-win32
 (defcfun ("iluGammaCorrectInter" gamma-correct-inter) :boolean (gamma :float))
