@@ -5,7 +5,7 @@
 (in-package #:cl-devil-system)
 
 (defsystem cl-devil
-    :depends-on (:cffi :anaphora)
+    :depends-on (:cffi :anaphora :alexandria)
     :components
     ((:file "package")
      (:file "il" :depends-on ("package"))

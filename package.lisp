@@ -1,7 +1,7 @@
 
 (defpackage #:cl-devil
   (:nicknames #:il)
-  (:use #:cl #:cffi :anaphora)
+  (:use #:cl #:cffi :anaphora :alexandria)
   (:shadow #:load #:error)
   (:export
    #:with-bound-image
