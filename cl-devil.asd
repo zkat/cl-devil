@@ -5,7 +5,7 @@
   :depends-on (#:cffi #:alexandria)
   :components
   ((:file "package")
-   (:file "internal")
+   (:file "internal" :depends-on ("package"))
    (:file "il" :depends-on ("package" "internal"))
    (:file "ilu" :depends-on ("package" "internal" "il"))
    (:file "ilut" :depends-on ("package" "internal" "il"))

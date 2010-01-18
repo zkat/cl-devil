@@ -78,7 +78,7 @@
   (width :uint) (height :uint) (depth :uint))
 (deferrwrap enlarge-canvas (width height depth))
 (defcfun ("iluErrorString" error-string) :string
-  (error %il:error))
+  (error il::error-enum))
 (defcfun ("iluFlipImage" %flip-image) :boolean)
 (deferrwrap flip-image)
 (defcfun ("iluGammaCorrect" %gamma-correct) :boolean (gamma :float))
