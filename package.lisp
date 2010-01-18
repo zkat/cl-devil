@@ -3,6 +3,7 @@
   (:use #:cl #:cffi #:alexandria)
   (:shadow #:error)
   (:export
+   #:maybe-error
    #:deferrwrap
    #:error
    #:devil-error
