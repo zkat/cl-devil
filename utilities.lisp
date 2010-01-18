@@ -22,8 +22,9 @@
              (let (,@(loop for x in images
                         for (var . args) = (if (listp x) x (list x))
                         for i from 0
-                        collect `(,var (anaphora:aprog1 (cffi:mem-aref ,ids :uint ,i)
-                                         ,@(args-helper args)))))
+                        collect `(,var (let ((it (cffi:mem-aref ,ids :uint ,i)))
+                                         ,@(args-helper args)
+                                         it))))
                ,@body)
           (%delete-images ,count ,ids))))))
 

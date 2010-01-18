@@ -2,7 +2,7 @@
 ;;;; cl-devil -- DevIL binding for CL.  See README for licensing information.
 
 (asdf:defsystem cl-devil
-  :depends-on (:cffi :anaphora :alexandria)
+  :depends-on (#:cffi #:alexandria)
   :components
   ((:file "package")
    (:file "internal")
