@@ -171,12 +171,12 @@
 
 (defcfun ("ilBindImage" bind-image) :void (image :int))
 (defcfun ("ilDeleteImages" %delete-images) :void (num :int) (images :pointer))
-(defun delete-images (images)
-  (with-foreign-object (array :uint (length images))
-    (loop for i below (length images)
+(defun delete-images (&rest images &aux (count (length images)))
+  (with-foreign-object (array :uint count)
+    (loop for i below count
        for image in images
        do (setf (mem-aref array :uint i) image))
-    (%delete-images (length images) array)))
+    (%delete-images count array)))
 
 (defcfun ("ilLoadImage" %load-image) :boolean (file-name pathname-string))
 (deferrwrap load-image (file-name))
@@ -235,3 +235,8 @@
   (deferrwrap flip-image))
 
 (defcfun ("ilDetermineType" determine-type) image-type (pathname pathname-string))
+
+(defun check-error ()
+  (let ((error (get-error)))
+    (unless (eq error :no-error)
+      (cl:error (error-condition error)))))

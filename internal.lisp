@@ -1,9 +1,12 @@
 (in-package :%il)
 
+(defun error-condition (keyword)
+  (make-condition (find-symbol (symbol-name keyword) (find-package :il))))
+
 (defmacro maybe-error (call)
   `(if ,call
        (values)
-       (cl:error (make-condition (find-symbol (symbol-name (il::get-error)) (find-package :il))))))
+       (cl:error (error-condition (il::get-error)))))
 
 (defmacro deferrwrap (name &optional args)
   `(defun ,name ,args

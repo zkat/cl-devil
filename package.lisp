@@ -3,6 +3,7 @@
   (:use #:cl #:alexandria)
   (:shadow #:error)
   (:export
+   #:error-condition
    #:maybe-error
    #:deferrwrap))
 
@@ -55,8 +56,9 @@
    #:SET-PIXELS
    #:SHUTDOWN
    #:TEX-IMAGE
-   ;; Errors from internal
+   ;; Errors
    #:error
+   #:check-error
    #:no-error
    #:invalid-enum
    #:out-of-memory
