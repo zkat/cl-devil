@@ -62,11 +62,6 @@
     (bind-image dest)
     (register-palette pointer (* ncols bpp) type)))
 
-(defun gen-images (n)
-  (with-foreign-object (ids :uint n)
-    (%gen-images n ids)
-    (loop for i to n collect (mem-aref ids :uint i))))
-
 (defmacro with-bound-image (id &body body)
   "Binds ID for the duration of BODY, returning to the previously bound image thereafter."
   (let ((old-image (gensym)))
