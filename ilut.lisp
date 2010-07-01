@@ -3,7 +3,7 @@
 (in-package :ilut)
 
 (define-foreign-library ilut
-  (:unix (:or "libILUT" "libILUT.so.1"))
+  (:unix (:or "libILUT.so" "libILUT.so.1"))
   (:windows "ILUT.dll")
   (t (:default "libILUT")))
 (use-foreign-library ilut)

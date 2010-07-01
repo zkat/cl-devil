@@ -3,7 +3,7 @@
 (in-package :ilu)
 
 (define-foreign-library ilu
-  (:unix (:or "libILU" "libILU.so.1"))
+  (:unix (:or "libILU.so" "libILU.so.1"))
   (:windows "ILU.dll")
   (t (:default "libILU")))
 (use-foreign-library ilu)
