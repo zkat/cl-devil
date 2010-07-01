@@ -3,7 +3,7 @@
 (in-package :il)
 
 (define-foreign-library il
-  (:unix (:or "libIL" "libIL.so.1"))
+  (:unix (:or "libIL.so" "libIL.so.1"))
   (:windows "DevIL.dll")
   (t (:default "libIL")))
 (use-foreign-library il)
