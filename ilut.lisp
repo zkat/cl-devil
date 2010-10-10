@@ -3,6 +3,7 @@
 (in-package :ilut)
 
 (define-foreign-library ilut
+  (:darwin (:or "libILUT.dylib" "libILUT.1.dylib"))
   (:unix (:or "libILUT.so" "libILUT.so.1"))
   (:windows "ILUT.dll")
   (t (:default "libILUT")))

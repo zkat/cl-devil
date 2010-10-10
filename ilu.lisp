@@ -3,6 +3,7 @@
 (in-package :ilu)
 
 (define-foreign-library ilu
+  (:darwin (:or "libILU.dylib" "libILU.1.dylib"))
   (:unix (:or "libILU.so" "libILU.so.1"))
   (:windows "ILU.dll")
   (t (:default "libILU")))
