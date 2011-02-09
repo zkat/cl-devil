@@ -64,10 +64,10 @@
 
 ; The standard C lib is loaded by default. I'm not entirely sure where to put
 ; the following:
-(cffi:defcfun ("memset" memset) :pointer
+(defcfun ("memset" memset) :pointer
   (dest :pointer) (value :int) (size :unsigned-int))
 
-(cffi:defcfun ("memcpy" memcpy) :pointer
+(defcfun ("memcpy" memcpy) :pointer
   (dest :pointer) (src :pointer) (size :unsigned-int))
 
 (defun clear-image (&rest channel-values)
