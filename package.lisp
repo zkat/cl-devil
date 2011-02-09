@@ -21,6 +21,7 @@
    #:element-type-of
    #:bytes-per-pixel-of
    #:copy-palette
+   #:clear-image
    ;; bindings
    #:BIND-IMAGE
    #:BLIT
