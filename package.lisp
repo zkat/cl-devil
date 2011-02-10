@@ -20,6 +20,12 @@
    #:pixel-format-of
    #:element-type-of
    #:bytes-per-pixel-of
+   #:image-width
+   #:image-height
+   #:image-format
+   #:image-type
+   #:image-bytes-per-pixel
+   #:image-bits-per-pixel
    #:copy-palette
    #:clear-image
    ;; bindings
