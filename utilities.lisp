@@ -33,32 +33,53 @@
           (unwind-protect (progn ,@body)
             (shutdown))))
 
-(defun width-of (id)
-  (bind-image id)
-  (get-integer :image-width))
+(defmacro with-bound-image (id &body body)
+  "Binds ID for the duration of BODY, returning to the previously bound image thereafter."
+  (let ((old-image (gensym)) (body-func (gensym)))
+    `(flet ((,body-func () ,@body))
+       (if (eq ,id :current-image)
+         (,body-func)
+         (let ((,old-image (il:get-integer :cur-image)))
+           (il:bind-image ,id)
+           (unwind-protect (,body-func)
+             (il:bind-image ,old-image)))))))
 
-(defun height-of (id)
-  (bind-image id)
-  (get-integer :image-height))
+(defun image-width (&optional (id :current-image))
+  (with-bound-image id
+    (get-integer :image-width)))
 
-(defun pixel-format-of (id)
-  (bind-image id)
-  (foreign-enum-keyword 'data-format (get-integer :image-format)))
+(defun image-height (&optional (id :current-image))
+  (with-bound-image id
+    (get-integer :image-height)))
 
-(defun element-type-of (id)
-  (bind-image id)
-  (foreign-enum-keyword 'data-type (get-integer :image-type)))
+(defun image-format (&optional (id :current-image))
+  (with-bound-image id
+    (foreign-enum-keyword 'data-format (get-integer :image-format))))
 
-(defun bytes-per-pixel-of (id)
-  (bind-image id)
-  (get-integer :image-bytes-per-pixel))
+(defun image-type (&optional (id :current-image))
+  (with-bound-image id
+    (foreign-enum-keyword 'data-type (get-integer :image-type))))
+
+(defun image-bytes-per-pixel (&optional (id :current-image))
+  (with-bound-image id
+    (get-integer :image-bytes-per-pixel)))
+
+(defun image-bits-per-pixel (&optional (id :current-image))
+  (with-bound-image id
+    (get-integer :image-bits-per-pixel)))
+
+(defmacro width-of (id) `(image-width ,id))
+(defmacro height-of (id) `(image-height ,id))
+(defmacro pixel-format-of (id) `(image-format ,id))
+(defmacro element-type-of (id) `(image-type ,id))
+(defmacro bytes-per-pixel-of (id) `(image-bytes-per-pixel ,id))
 
 (defun copy-palette (dest src)
   (bind-image src)
   (let ((type (get-integer :palette-type))
-	(ncols (get-integer :palette-num-cols))
-	(bpp (get-integer :palette-bpp))
-	(pointer (get-palette)))
+        (ncols (get-integer :palette-num-cols))
+        (bpp (get-integer :palette-bpp))
+        (pointer (get-palette)))
     (bind-image dest)
     (register-palette pointer (* ncols bpp) type)))
 
@@ -106,10 +127,3 @@
             (memcpy iterator data row-size)
             (incf-pointer iterator row-size))))))
 
-(defmacro with-bound-image (id &body body)
-  "Binds ID for the duration of BODY, returning to the previously bound image thereafter."
-  (let ((old-image (gensym)))
-    `(let ((,old-image (il:get-integer :cur-image)))
-       (il:bind-image ,id)
-       (unwind-protect (progn ,@body)
-         (il:bind-image ,old-image)))))
