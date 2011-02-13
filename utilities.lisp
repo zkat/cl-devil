@@ -68,11 +68,18 @@
   (with-bound-image id
     (get-integer :image-bits-per-pixel)))
 
-(defmacro width-of (id) `(image-width ,id))
-(defmacro height-of (id) `(image-height ,id))
-(defmacro pixel-format-of (id) `(image-format ,id))
-(defmacro element-type-of (id) `(image-type ,id))
-(defmacro bytes-per-pixel-of (id) `(image-bytes-per-pixel ,id))
+(defmacro define-replace-fun (deprecated new)
+  `(progn (declaim (inline ,deprecated))
+          (defun ,deprecated (&rest args) 
+            (warn ,(format nil "~a has been depricated, use ~a instead"
+                           deprecated new))
+            (apply #',new args))))
+
+(define-replace-fun width-of image-width)
+(define-replace-fun height-of image-height)
+(define-replace-fun pixel-format-of image-format)
+(define-replace-fun element-type-of image-type)
+(define-replace-fun bytes-per-pixel-of image-bytes-per-pixel)
 
 (defun copy-palette (dest src)
   (bind-image src)
