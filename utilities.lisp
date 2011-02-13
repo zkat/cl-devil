@@ -71,8 +71,6 @@
 (defmacro define-replace-fun (deprecated new)
   `(progn (declaim (inline ,deprecated))
           (defun ,deprecated (&rest args) 
-            (warn ,(format nil "~a has been depricated, use ~a instead"
-                           deprecated new))
             (apply #',new args))))
 
 (define-replace-fun width-of image-width)
