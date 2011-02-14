@@ -106,7 +106,7 @@
          (bytes-per-pixel (get-integer :image-bytes-per-pixel))
          (width (get-integer :image-width))
          (height (get-integer :image-height))
-         (data-type (ecase (foreign-enum-keyword 
+         (data-type (ecase (foreign-enum-keyword
                             'data-type (get-integer :image-type))
                       (:byte :int8)
                       (:double :double)
@@ -131,7 +131,6 @@
           (dotimes (i width)
             (memcpy iterator src-pixel bytes-per-pixel)
             (incf-pointer iterator bytes-per-pixel))
-          (dotimes (i (1- height)) 
+          (dotimes (i (1- height))
             (memcpy iterator data row-size)
             (incf-pointer iterator row-size))))))
-
