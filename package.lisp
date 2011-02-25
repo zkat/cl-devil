@@ -54,6 +54,7 @@
    #:LOAD-F
    #:LOAD-IMAGE
    #:LOAD-L
+   #:ORIGIN-FUNC
    #:OVERLAY-IMAGE
    #:SAVE
    #:SAVE-F
