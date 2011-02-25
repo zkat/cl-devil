@@ -26,6 +26,7 @@
    #:image-type
    #:image-bytes-per-pixel
    #:image-bits-per-pixel
+   #:image-origin
    #:copy-palette
    #:clear-image
    ;; bindings

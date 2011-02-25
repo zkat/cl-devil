@@ -150,6 +150,13 @@
   (:image-origin #x0DFE)
   (:image-channels #x0DFF))
 
+(defcenum origin
+  (:origin-set #x0600)
+  (:origin-lower-left #x0601)
+  (:origin-upper-left #x0602)
+  (:origin-mode #x0603))
+
+
 (define-foreign-type pathname-string-type ()
   ()
   (:actual-type :string)
