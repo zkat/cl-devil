@@ -137,6 +137,8 @@
   (:num-images #x0DF1)
   (:num-mipmaps #x0DF2)
   (:num-layers #x0DF3)
+  (:origin-set #x0600)
+  (:origin-mode #x0603)
   (:active-image #x0DF4)
   (:active-mipmap #x0DF5)
   (:active-layer #x0DF6)
@@ -151,10 +153,8 @@
   (:image-channels #x0DFF))
 
 (defcenum origin
-  (:origin-set #x0600)
   (:origin-lower-left #x0601)
-  (:origin-upper-left #x0602)
-  (:origin-mode #x0603))
+  (:origin-upper-left #x0602))
 
 
 (define-foreign-type pathname-string-type ()
@@ -207,6 +207,8 @@
 (defcfun ("ilTexImage" %tex-image) :boolean
   (width :uint) (height :uint) (depth :uint) (bpp :uint8) (format data-format) (type data-type) (data :pointer))
 (deferrwrap tex-image (width height depth bpp format type data))
+(defcfun ("ilOriginFunc" origin-func) :boolean
+  (origin origin))
 (defcfun ("ilGetData" get-data) :pointer)
 (defcfun ("ilCopyPixels" copy-pixels) :uint
   (x-offset :uint) (y-offset :uint) (z-offset :uint) (width :uint) (height :uint) (depth :uint) (format data-format) (type data-type) (data :pointer))
