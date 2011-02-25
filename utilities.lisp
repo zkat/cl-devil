@@ -68,6 +68,10 @@
   (with-bound-image id
     (get-integer :image-bits-per-pixel)))
 
+(defun image-origin (&optional (id :current-image))
+  (with-bound-image id
+    (foreign-enum-keyword 'origin (get-integer :image-origin))))
+
 (defmacro define-deprecated-image-fun (deprecated new)
   `(progn (declaim (inline ,deprecated))
           (defun ,deprecated (id)
