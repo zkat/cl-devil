@@ -46,6 +46,27 @@
   (:image-origin #x0DFE)
   (:image-channels #x0DFF))
 
+(defcenum img-param-name
+  (:filter #x2600)
+  (:placement #x700))
+
+(defcenum img-param
+  (:bilinear #x2603)
+  (:linear #x2602)
+  (:nearest #x2601)
+  (:scale-bell #x2606)
+  (:scale-box #x2604)
+  (:scale-bspline #x2607)
+  (:scale-lanczos3 #x2608)
+  (:scale-mitchell #x2609)
+  (:scale-triangle #x2605)
+  (:center #x705)
+  (:lower-left #x701)
+  (:lower-right #x702)
+  (:upper-left #x703)
+  (:upper-right #x704))
+
+
 (defcfun ("iluInit" init) :void)
 
 (defcfun ("iluAlienify" %alienify) :boolean)
@@ -88,7 +109,8 @@
 ;; (defcfun ("iluGetImageInfo" get-image-info) :void (info :pointer))
 (defcfun ("iluGetInteger" get-integer) :int (mode mode))
 ;; (defcfun ("iluGetString" get-string) :string)
-;; (defcfun ("iluImageParameter" image-parameter) :void (pname pname) (param param))
+(defcfun ("iluImageParameter" image-parameter) :void
+  (pname img-param-name) (param img-param))
 (defcfun ("iluInvertAlpha" %invert-alpha) :boolean)
 (deferrwrap invert-alpha)
 (defcfun ("iluMirror" %mirror) :boolean)
