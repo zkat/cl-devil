@@ -28,6 +28,7 @@
    #:image-bits-per-pixel
    #:image-origin
    #:copy-palette
+   #:clear-colour
    #:clear-image
    ;; bindings
    #:BIND-IMAGE
@@ -134,7 +135,7 @@
    :swap-colors
    ;; :get-image-info
    ;; :get-string
-   ;; :image-parameter
+   :image-parameter
    ))
 
 (defpackage #:ilut
