@@ -245,6 +245,10 @@
   (deferrwrap flip-image))
 
 (defcfun ("ilDetermineType" determine-type) image-type (pathname pathname-string))
+(defcfun ("ilClearColour" clear-colour) :void
+  (red :uint8) (green :uint8) (blue :uint8) (alpha :uint8))
+(defcfun ("ilClearImage" %clear-image) :boolean)
+(deferrwrap clear-image)
 
 (defun check-error ()
   (let ((error (get-error)))
