@@ -1,4 +1,44 @@
 ;;;; cl-devil -- DevIL binding for CL.  See README for licensing information.
+(defpackage #:ilu
+  (:use #:cl #:cffi #:%il)
+  (:shadow #:error)
+  (:export
+   :init
+   :alienify
+   :blur-avg
+   :blur-gaussian
+   :build-mipmaps
+   :colours-used
+   :colors-used
+   :compare-image
+   :contrast
+   :crop
+   :delete-image
+   :edge-detect-p
+   :edge-detect-s
+   :emboss
+   :enlarge-canvas
+   :error-string
+   :flip-image
+   :gamma-correct-inter
+   :gamma-correct-scale
+   :gen-image
+   :get-integer
+   :invert-alpha
+   :mirror
+   :negative
+   :noisify
+   :pixelsize
+   :rotate
+   :saturate
+   :scale
+   :sharpen
+   :swap-colours
+   :swap-colors
+   ;; :get-image-info
+   ;; :get-string
+   :image-parameter
+   ))
 
 (in-package :ilu)
 
