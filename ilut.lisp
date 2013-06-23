@@ -1,4 +1,27 @@
 ;;;; cl-devil -- DevIL binding for CL.  See README for licensing information.
+(defpackage #:ilut
+  (:use #:cl #:cffi #:%il)
+  (:shadow #:error)
+  (:export
+   #:CONVERT-TO-SDL-SURFACE
+   #:DISABLE
+   #:ENABLE
+   #:GET-BOOLEAN
+   #:GL-BIND-MIPMAPS
+   #:GL-BIND-TEX-IMAGE
+   #:GL-BUILD-MIPMAPS
+   #:GL-LOAD-IMAGE
+   #:GL-SAVE-IMAGE
+   #:GL-SCREEN
+   #:GL-SCREENIE
+   #:GL-SET-TEX
+   #:GL-SUB-TEX
+   #:GL-TEX-IMAGE
+   #:INIT
+   #:RENDERER
+   #:SDL-SURFACE-FROM-BITMAP
+   #:SDL-SURFACE-LOAD-IMAGE
+   ))
 
 (in-package :ilut)
 
