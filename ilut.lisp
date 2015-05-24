@@ -28,7 +28,7 @@
 (define-foreign-library ilut
   (:darwin (:or "libILUT.dylib" "libILUT.1.dylib"))
   (:unix (:or "libILUT.so" "libILUT.so.1"))
-  (:windows "ILUT.dll")
+  (:windows (:or "ILUT.dll" "libILUT-1.dll"))
   (t (:default "libILUT")))
 (use-foreign-library ilut)
 
