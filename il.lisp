@@ -5,7 +5,7 @@
 (define-foreign-library il
   (:darwin (:or "libIL.dylib" "libIL.1.dylib"))
   (:unix (:or "libIL.so" "libIL.so.1"))
-  (:windows "DevIL.dll")
+  (:windows (:or "DevIL.dll" "libIL-1.dll"))
   (t (:default "libIL")))
 (use-foreign-library il)
 
